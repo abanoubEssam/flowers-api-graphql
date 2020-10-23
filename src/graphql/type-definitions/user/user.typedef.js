@@ -30,7 +30,7 @@ input File {
   }
   type Query {
     sayHi: String!
-    getUsers: [User]
+    getUsers: [User!]!
     login(input: loginInput): authResult!
   }
   type Mutation {
