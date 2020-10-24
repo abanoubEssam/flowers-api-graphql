@@ -27,6 +27,7 @@ const server = new ApolloServer({
         }
     },
     context: async ({ req }) => {
+        // console.log("req.body", req.body)
         if (req.headers.authorization) {
                return await validateToken(req.headers.authorization)
         }
@@ -35,7 +36,7 @@ const server = new ApolloServer({
 
 })
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 8000
 
 server.listen({ port }).then(async res => {
     try {

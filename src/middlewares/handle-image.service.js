@@ -2,7 +2,9 @@ import { createWriteStream } from 'fs'
 import * as shortid from 'shortid'
 import path from 'path'
 export const imgUploadMiddleware = async ({ createReadStream, filename }) => {
-    
+    if (!createReadStream) {
+        return null
+    }
     const id = shortid.generate()
     const pathDir = `${__dirname}` + `/../../uploads/${id}-${filename}`
     const newPath = path.resolve(pathDir)

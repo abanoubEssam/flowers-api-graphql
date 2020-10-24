@@ -23,6 +23,7 @@ input File {
   type User {
     id: ID!
     email: String!
+    name: String!
     password: String!
     profileImg: String
     createdAt: String!
