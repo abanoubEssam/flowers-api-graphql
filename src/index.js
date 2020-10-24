@@ -17,13 +17,14 @@ console.log("publicPath", publicPath)
 app.use('/uploads', express.static(uploadPath))
 app.use('/static', express.static(publicPath))
 
-app.use('/hamada' , (req , res , next )=> {
+app.use('/hamada', (req, res, next) => {
     // console.log("REQ" , req);
     res.send('hamada')
     next()
 })
 console.log("uploadPath", uploadPath)
 const server = new ApolloServer({
+    tracing: true,
     typeDefs: [
         userTypeDef
     ],
@@ -51,7 +52,7 @@ const server = new ApolloServer({
 const port = process.env.PORT || 3000
 
 server.applyMiddleware({ app })
-console.log("NODE-ENV" , process.env.NODE_ENV);
+console.log("NODE-ENV", process.env.NODE_ENV);
 app.listen({ port }, async () => {
     await mongoose.connect(config.get('mongodbURL'), { useNewUrlParser: true, useUnifiedTopology: true })
     console.log(`db connected to ${config.get('mongodbURL')}`)
