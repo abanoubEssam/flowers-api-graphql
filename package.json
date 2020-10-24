@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.js --ext js,graphql --exec babel-node",
+    "start-dev": "nodemon src/index.js --ext js,graphql --exec babel-node",
+    "start": "nodemon src/index.js --ext js,graphql --exec babel-node  --env production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "AbanoubEssam",
@@ -15,6 +16,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "bcryptjs": "^2.4.3",
+    "config": "^3.3.2",
     "express": "^4.17.1",
     "graphql": "^15.3.0",
     "jsonwebtoken": "^8.5.1",
