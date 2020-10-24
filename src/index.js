@@ -51,10 +51,10 @@ const server = new ApolloServer({
 const port = process.env.PORT || 3000
 
 server.applyMiddleware({ app })
-
+console.log("NODE-ENV" , process.env.NODE_ENV);
 app.listen({ port }, async () => {
     await mongoose.connect(config.get('mongodbURL'), { useNewUrlParser: true, useUnifiedTopology: true })
-    console.log(`db connected to ${mongodbURL}`)
+    console.log(`db connected to ${config.get('mongodbURL')}`)
     console.log(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`)
 
 }
