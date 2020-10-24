@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start-dev": "nodemon src/index.js --ext js,graphql --exec babel-node",
-    "start": " cross-env NODE_ENV=production nodemon src/index.js --ext js,graphql --exec babel-node ",
+    "start": " cross-env NODE_ENV=production APOLLO_KEY=service:flowers:PgMF6sTeJGachlDUeYsykg APOLLO_GRAPH_VARIANT=current APOLLO_SCHEMA_REPORTING=true  nodemon src/index.js --ext js,graphql --exec babel-node ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "AbanoubEssam",
