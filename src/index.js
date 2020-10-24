@@ -44,7 +44,7 @@ const server = new ApolloServer({
             return await validateToken(req.headers.authorization)
         }
     },
-    // playground: false
+    playground: true
 
 })
 
