@@ -10,8 +10,18 @@ import { validateToken } from './middlewares/jwt.service';
 
 const app = express()
 const uploadPath = path.resolve(__dirname, '../uploads')
-app.use('/uploads', express.static(uploadPath))
+const publicPath = path.resolve(__dirname, '../public')
+console.log("publicPath", publicPath)
 
+
+app.use('/uploads', express.static(uploadPath))
+app.use('/static', express.static(publicPath))
+
+app.use('/hamada' , (req , res , next )=> {
+    // console.log("REQ" , req);
+    res.send('hamada')
+    next()
+})
 console.log("uploadPath", uploadPath)
 const server = new ApolloServer({
     typeDefs: [

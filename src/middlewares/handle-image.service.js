@@ -15,5 +15,5 @@ export const imgUploadMiddleware = async ({ createReadStream, filename }) => {
             .on('finish', () => resolve({ id, path: pathDir }))
             .on('error', reject),
     )
-    return `http://localhost:3000${newPath}`
+    return `http://localhost:3000/uploads/${id}-${filename}`
 }
