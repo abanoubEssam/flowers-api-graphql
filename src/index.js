@@ -51,13 +51,14 @@ const server = new ApolloServer({
             return await validateToken(req.headers.authorization)
         }
     },
-    playground: true
+    playground: true,
+    introspection: true
 
 })
 
 const port = process.env.PORT || 3000
 
-server.applyMiddleware({ app , cors: {credentials: true, origin: true}})
+server.applyMiddleware({ app , cors: false})
 console.log("NODE-ENV", process.env.NODE_ENV);
 app.listen({ port }, async () => {
     await mongoose.connect(config.get('mongodbURL'), { useNewUrlParser: true, useUnifiedTopology: true })
