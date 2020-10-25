@@ -12,7 +12,7 @@ const app = express()
 const uploadPath = path.resolve(__dirname, '../uploads')
 const publicPath = path.resolve(__dirname, '../public')
 console.log("publicPath", publicPath)
-
+import { AwakeHeroku } from 'awake-heroku'
 
 app.use('/uploads', express.static(uploadPath))
 app.use('/static', express.static(publicPath))
@@ -22,6 +22,11 @@ app.use('/hamada', (req, res, next) => {
     res.send('hamada')
     next()
 })
+
+AwakeHeroku.add({
+    url: "https://flowers-api-graphql.herokuapp.com/graphql"
+})
+
 console.log("uploadPath", uploadPath)
 const server = new ApolloServer({
     tracing: true,
