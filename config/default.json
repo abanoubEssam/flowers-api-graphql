@@ -1,5 +1,9 @@
 {
     "mongodbURL": "mongodb://localhost:27017/flowers-ex",
+    "cloudinary": {
+        "API_KEY": "494732247158464",
+        "API_SECRET": "uJErhBJzZLpzMcgQxC06Bf46jVg"
+    },
     "server": {
         "protocol": "http",
         "port": 3000,

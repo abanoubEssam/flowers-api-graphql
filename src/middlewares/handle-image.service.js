@@ -1,4 +1,5 @@
 import { createWriteStream } from 'fs'
+const cloudinary = require('cloudinary').v2
 import * as shortid from 'shortid'
 import path from 'path'
 import config from 'config'
