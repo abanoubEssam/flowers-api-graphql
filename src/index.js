@@ -63,7 +63,7 @@ console.log("NODE-ENV", process.env.NODE_ENV);
 app.listen({ port }, async () => {
     await mongoose.connect(config.get('mongodbURL'), { useNewUrlParser: true, useUnifiedTopology: true })
     console.log(`db connected to ${config.get('mongodbURL')}`)
-    console.log(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`)
+    console.log(`🚀 Server ready at ${config.get('server.protocol')}://${config.get('server.host')}:${port}${server.graphqlPath}`)
 
 }
 )

@@ -1,3 +1,8 @@
 {
-    "mongodbURL": "mongodb://localhost:27017/flowers-ex"
+    "mongodbURL": "mongodb://localhost:27017/flowers-ex",
+    "server": {
+        "protocol": "http",
+        "port": 3000,
+        "host": "localhost"
+    }
 }
