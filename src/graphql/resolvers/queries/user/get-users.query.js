@@ -1,7 +1,8 @@
 import { UserModel } from "../../../../models/user.model";
 export const getUsersQuery = {
     getUsers: async (parent, args, ctx, info) => {
-        console.log("ctx", ctx);
-        return await UserModel.find({})
+        const page = args.page || 1
+        const limit = args.limit || 20
+        return await UserModel.find({}).skip((page - 1) * limit).limit(limit)
     }
 }
