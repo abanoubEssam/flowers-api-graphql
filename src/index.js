@@ -30,6 +30,7 @@ AwakeHeroku.add({
 console.log("uploadPath", uploadPath)
 const server = new ApolloServer({
     tracing: true,
+
     typeDefs: [
         userTypeDef
     ],
@@ -56,7 +57,7 @@ const server = new ApolloServer({
 
 const port = process.env.PORT || 3000
 
-server.applyMiddleware({ app })
+server.applyMiddleware({ app , cors: {credentials: true, origin: true}})
 console.log("NODE-ENV", process.env.NODE_ENV);
 app.listen({ port }, async () => {
     await mongoose.connect(config.get('mongodbURL'), { useNewUrlParser: true, useUnifiedTopology: true })
