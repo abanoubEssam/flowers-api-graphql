@@ -18,8 +18,8 @@ export const getShopsQuery = {
             }
         }
         const shops = await ShopModel.find(query).populate('owner').skip((page - 1) * limit).limit(limit)
-        console.log("shops transformed", JSON.stringify(shops))
-        console.log("shops", shops[0].place)
-        return shops
+        const shopStr = JSON.stringify(shops)
+        const shopParsed = JSON.parse(shopStr)
+        return shopParsed
     }
 }

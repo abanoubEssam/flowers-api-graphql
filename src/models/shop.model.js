@@ -31,6 +31,8 @@ const shopSchema = new mongoose.Schema({
     timestamps: true,
     toJSON: {
         transform: function (doc, ret) {
+            ret.id = ret._id
+            ret.owner.id = ret.owner._id
             ret.place = {
                 longitude: doc.place.coordinates[0],
                 latitude: doc.place.coordinates[1],
