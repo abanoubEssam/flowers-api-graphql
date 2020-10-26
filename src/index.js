@@ -1,18 +1,19 @@
 const { ApolloServer, gql } = require("apollo-server-express");
 const mongoose = require("mongoose");
-const { mongodbURL } = require("./constants");
 const { userMutations } = require("./graphql/resolvers/mutations/user/user.mutations");
 const { userTypeDef } = require("./graphql/type-definitions/user/user.typedef");
+import { AwakeHeroku } from 'awake-heroku';
+import config from 'config';
 import express from 'express';
 import path from 'path';
+import { shopMutations } from './graphql/resolvers/mutations/shop/shop.mutations';
 import { userQueries } from './graphql/resolvers/queries/user/user.queries';
+import { shopTypeDef } from './graphql/type-definitions/shop/shop.typedef';
 import { validateToken } from './middlewares/jwt.service';
-import config from 'config'
 const app = express()
 const uploadPath = path.resolve(__dirname, '../uploads')
 const publicPath = path.resolve(__dirname, '../public')
 console.log("publicPath", publicPath)
-import { AwakeHeroku } from 'awake-heroku'
 
 app.use('/uploads', express.static(uploadPath))
 app.use('/static', express.static(publicPath))
@@ -32,7 +33,8 @@ const server = new ApolloServer({
     tracing: true,
 
     typeDefs: [
-        userTypeDef
+        userTypeDef,
+        shopTypeDef
     ],
     resolvers: {
         Query: {
@@ -42,14 +44,18 @@ const server = new ApolloServer({
             ...userQueries
         },
         Mutation: {
-            ...userMutations
+            ...userMutations,
+            ...shopMutations
         }
     },
     context: async ({ req }) => {
         // console.log("req.body", req.body)
+        let user;
         if (req.headers.authorization) {
-            return await validateToken(req.headers.authorization)
+            user = await validateToken(req.headers.authorization)
+            return user
         }
+        return { req, user }
     },
     playground: true,
     introspection: true

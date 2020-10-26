@@ -18,4 +18,5 @@ export const validateToken = async (authorizationToken) => {
         if (!user) {
             throw new Error("UnAuthorized => user")
         }
+        return user
 }
