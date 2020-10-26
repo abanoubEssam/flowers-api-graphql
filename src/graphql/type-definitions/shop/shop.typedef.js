@@ -6,13 +6,18 @@ export const shopTypeDef = gql`
       lat: Int!
       lng: Int!
   }
+  input placeSearchInput {
+      lat: Int!
+      lng: Int!
+      radius: Int
+  }
   type Place {
       lat: Int!
       lng: Int!
   }
   type PlaceResult {
-      latitude: Int
-      longitude: Int
+      latitude: Int!
+      longitude: Int!
   }
   input createShopInput{
       name: String!
@@ -40,7 +45,7 @@ export const shopTypeDef = gql`
   }
 
   extend type Query {
-    getShops(page: Int , limit: Int , place: placeInput) : [ShopResult!]!
+    getShops(page: Int , limit: Int , place: placeSearchInput , owner: ID , name: String , id: ID) : [ShopResult!]!
   }
 
   extend type Mutation {

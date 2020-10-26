@@ -37,8 +37,6 @@ const shopSchema = new mongoose.Schema({
                 longitude: doc.place.coordinates[0],
                 latitude: doc.place.coordinates[1],
             }
-            console.log("ret.place", ret.place)
-            console.log("ret", ret)
         }
     }
 })
