@@ -27,6 +27,31 @@ const shopSchema = new mongoose.Schema({
     }
 
 
-}, { timestamps: true })
+}, {
+    timestamps: true,
+    toJSON: {
+        transform: function (doc, ret) {
+            ret.place = {
+                longitude: doc.place.coordinates[0],
+                latitude: doc.place.coordinates[1],
+            }
+            console.log("ret.place", ret.place)
+            console.log("ret", ret)
+        }
+    }
+})
+
+// shopSchema.set('toJSON', {
+//     transform: function (doc, ret, options) {
+//         console.log("doc.place", doc.place.coordinates[0])
+//         console.log("doc.place", doc.place.coordinates[1])
+//         console.log("TO JSON ############");
+//         ret.place = {
+//             longitude: doc.place.coordinates[1],
+//             latitude: doc.place.coordinates[0],
+//         };
+//         console.log("ret.place", ret.place)
+//     },
+// });
 
 export const ShopModel = mongoose.model(SHOP_MODEL_NAME, shopSchema)

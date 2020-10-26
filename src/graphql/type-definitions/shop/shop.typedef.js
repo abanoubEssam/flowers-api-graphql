@@ -10,6 +10,10 @@ export const shopTypeDef = gql`
       lat: Int!
       lng: Int!
   }
+  type PlaceResult {
+      latitude: Int
+      longitude: Int
+  }
   input createShopInput{
       name: String!
       place: placeInput!
@@ -25,8 +29,18 @@ export const shopTypeDef = gql`
     updatedAt:String!
   }
 
+  type ShopResult {
+    id: ID!
+    name: String!
+    owner: User!
+    shopImg: String
+    place: PlaceResult
+    createdAt: String!
+    updatedAt:String!
+  }
+
   extend type Query {
-    getShops(page: Int , limit: Int) : [Shop!]!
+    getShops(page: Int , limit: Int , place: placeInput) : [ShopResult!]!
   }
 
   extend type Mutation {
