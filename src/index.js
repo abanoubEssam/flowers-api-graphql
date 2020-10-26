@@ -7,6 +7,7 @@ import config from 'config';
 import express from 'express';
 import path from 'path';
 import { shopMutations } from './graphql/resolvers/mutations/shop/shop.mutations';
+import { shopQueries } from './graphql/resolvers/queries/shop/shop.queries';
 import { userQueries } from './graphql/resolvers/queries/user/user.queries';
 import { shopTypeDef } from './graphql/type-definitions/shop/shop.typedef';
 import { validateToken } from './middlewares/jwt.service';
@@ -41,7 +42,8 @@ const server = new ApolloServer({
             sayHi: () => {
                 return 'hey all'
             },
-            ...userQueries
+            ...userQueries,
+            ...shopQueries
         },
         Mutation: {
             ...userMutations,
