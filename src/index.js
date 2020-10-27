@@ -47,7 +47,7 @@ const server = new ApolloServer({
         },
         Mutation: {
             ...userMutations,
-            ...shopMutations
+            ...shopMutations,
         }
     },
     context: async ({ req }) => {

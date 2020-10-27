@@ -4,6 +4,7 @@ import * as shortid from 'shortid'
 import path from 'path'
 import config from 'config'
 export const imgUploadMiddleware = async ({ createReadStream, filename }) => {
+    console.log("imgUploadMiddleware -> { createReadStream, filename }", { createReadStream, filename })
     if (!createReadStream) {
         return null
     }
@@ -17,5 +18,8 @@ export const imgUploadMiddleware = async ({ createReadStream, filename }) => {
             .on('finish', () => resolve({ id, path: pathDir }))
             .on('error', reject),
     )
-    return `${config.get('server.protocol')}://${config.get('server.host')}:${config.get('server.port')}/uploads/${id}-${filename}`
+    const imgUrl = process.env.NODE_ENV == "development" ? 
+    `${config.get('server.protocol')}://${config.get('server.host')}:${config.get('server.port')}/uploads/${id}-${filename}` :
+    `${config.get('server.protocol')}://${config.get('server.host')}/uploads/${id}-${filename}`
+    return imgUrl
 }

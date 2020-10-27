@@ -2,7 +2,6 @@
     "mongodbURL": "mongodb+srv://abanoubessam:01280680253Aa@shop.5bavh.mongodb.net/flowers-g?retryWrites=true&w=majority",
     "server": {
         "protocol": "https",
-        "port": 3000,
         "host": "flowers-api-graphql.herokuapp.com"
     }
 }
