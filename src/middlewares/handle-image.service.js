@@ -3,11 +3,15 @@ const cloudinary = require('cloudinary').v2
 import * as shortid from 'shortid'
 import path from 'path'
 import config from 'config'
+const makeDir = require('make-dir');
+
 export const imgUploadMiddleware = async ({ createReadStream, filename }) => {
     console.log("imgUploadMiddleware -> { createReadStream, filename }", { createReadStream, filename })
     if (!createReadStream) {
         return null
     }
+    await makeDir(`${__dirname}` + `/../../uploads`);
+
     const id = shortid.generate()
     const pathDir = `${__dirname}` + `/../../uploads/${id}-${filename}`
     const newPath = path.resolve(pathDir)
