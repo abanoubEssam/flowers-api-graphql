@@ -26,7 +26,7 @@ app.use('/hamada', (req, res, next) => {
 })
 
 AwakeHeroku.add({
-    url: "https://flowers-api-graphql.herokuapp.com/graphql"
+    url: "https://flowers-api-graphql.herokuapp.com"
 })
 
 console.log("uploadPath", uploadPath)
