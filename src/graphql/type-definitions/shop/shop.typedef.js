@@ -57,6 +57,7 @@ export const shopTypeDef = gql`
   extend type Mutation {
     createShop(input: createShopInput): Shop!
     updateShop(input: updateShopInput): Shop!
+    deleteShop(id: ID!): Boolean!
   }
 
 `
