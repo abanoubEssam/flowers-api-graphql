@@ -8,10 +8,11 @@ export const updateShopMutation = {
         if (!user) {
             throw new Error("Login First")
         }
-        const check = await ShopModel.findOne({ owner: user._id, _id: args.id })
+        console.log("user._id", user._id)
+        const check = await ShopModel.findOne({ owner: user._id, _id: args.input.id })
         console.log("check", check)
-        if (check) {
-            throw new Error("You Are Not Allowed")
+        if (!check) {
+            throw new Error("Shop Not Found Or You Are Not Allowed!")
         }
         let file
         if (args.input.shopImg) {
@@ -38,8 +39,8 @@ export const updateShopMutation = {
 
         Object.keys(updateQuery).forEach((key) => (updateQuery[key] == undefined) && delete updateQuery[key]);
 
-        await ShopModel.findOneAndUpdate({ owner: user._id, _id: args.id }, updateQuery, { new: true })
-        const populatedShop = await ShopModel.findOne({ owner: user._id, _id: args.id }).populate("owner")
+        await ShopModel.findOneAndUpdate({ owner: user._id, _id: args.input.id }, updateQuery, { new: true })
+        const populatedShop = await ShopModel.findOne({ owner: user._id, _id: args.input.id }).populate("owner")
         return populatedShop
     }
 }
