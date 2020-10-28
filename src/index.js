@@ -26,7 +26,7 @@ app.use('/hamada', (req, res, next) => {
 })
 
 AwakeHeroku.add({
-    url: "https://flowers-api-graphql.herokuapp.com"
+    url: "https://ionian-cotton-aerosteon.glitch.me/hamada"
 })
 
 console.log("uploadPath", uploadPath)

@@ -2,6 +2,6 @@
     "mongodbURL": "mongodb+srv://abanoubessam:01280680253Aa@shop.5bavh.mongodb.net/flowers-g?retryWrites=true&w=majority",
     "server": {
         "protocol": "https",
-        "host": "flowers-api-graphql.herokuapp.com"
+        "host": "ionian-cotton-aerosteon.glitch.me"
     }
 }
