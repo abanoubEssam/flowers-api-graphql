@@ -25,6 +25,7 @@ export const shopTypeDef = gql`
       shopImg: Upload
   }
   input updateShopInput{
+      id: ID!
       name: String
       place: placeInput
       shopImg: Upload
