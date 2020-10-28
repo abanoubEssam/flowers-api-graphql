@@ -14,11 +14,15 @@ export const createShopMutation = {
         const file = await args.input.shopImg
         console.log("file", file)
         let shopImg
+        
         if (file) {
             shopImg = await imgUploadMiddleware(file)
         }
 
-        const place = transformLocation(args.input.place.lng, args.input.place.lat)
+        let place
+        if (args.input.place) {
+            place = transformLocation(args.input.place.lng, args.input.place.lat)    
+        }
 
         const shop = await ShopModel.create({
             owner: user._id,

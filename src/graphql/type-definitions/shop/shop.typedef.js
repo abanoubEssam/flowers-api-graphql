@@ -21,7 +21,12 @@ export const shopTypeDef = gql`
   }
   input createShopInput{
       name: String!
-      place: placeInput!
+      place: placeInput
+      shopImg: Upload
+  }
+  input updateShopInput{
+      name: String
+      place: placeInput
       shopImg: Upload
   }
   type Shop {
@@ -29,7 +34,7 @@ export const shopTypeDef = gql`
     name: String!
     owner: User!
     shopImg: String
-    place: Place!
+    place: Place
     createdAt: String!
     updatedAt:String!
   }
@@ -50,6 +55,7 @@ export const shopTypeDef = gql`
 
   extend type Mutation {
     createShop(input: createShopInput): Shop!
+    updateShop(input: updateShopInput): Shop!
   }
 
 `

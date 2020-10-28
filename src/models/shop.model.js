@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 import { SHOP_MODEL_NAME, USER_MODEL_NAME } from '../constants'
+import { LocationSchema } from './location.model'
 
 
 const shopSchema = new mongoose.Schema({
@@ -16,14 +17,8 @@ const shopSchema = new mongoose.Schema({
         type: String
     },
     place: {
-        type: {
-            type: String,
-            default: 'Point'
-        },
-        coordinates: {
-            type: [Number],
-            index: '2dsphere'
-        }
+        type: LocationSchema,
+        default: undefined
     }
 
 
@@ -33,25 +28,20 @@ const shopSchema = new mongoose.Schema({
         transform: function (doc, ret) {
             ret.id = ret._id
             ret.owner.id = ret.owner._id
-            ret.place = {
+            // if (ret.place) {
+            //     console.log("PLACE######");
+            //     ret.place = {
+            //             longitude: doc.place.coordinates[0],
+            //             latitude: doc.place.coordinates[1]
+            //     }
+            // }
+            ret.place = (ret.place) ? {
                 longitude: doc.place.coordinates[0],
-                latitude: doc.place.coordinates[1],
-            }
+                latitude: doc.place.coordinates[1]
+            } : undefined;
         }
     }
 })
 
-// shopSchema.set('toJSON', {
-//     transform: function (doc, ret, options) {
-//         console.log("doc.place", doc.place.coordinates[0])
-//         console.log("doc.place", doc.place.coordinates[1])
-//         console.log("TO JSON ############");
-//         ret.place = {
-//             longitude: doc.place.coordinates[1],
-//             latitude: doc.place.coordinates[0],
-//         };
-//         console.log("ret.place", ret.place)
-//     },
-// });
 
 export const ShopModel = mongoose.model(SHOP_MODEL_NAME, shopSchema)
