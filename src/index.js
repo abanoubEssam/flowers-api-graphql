@@ -21,7 +21,7 @@ app.use('/static', express.static(publicPath))
 
 app.use('/hamada', (req, res, next) => {
     // console.log("REQ" , req);
-    res.send('hamada')
+    res.status(200).send('hamada')
     next()
 })
 
@@ -65,8 +65,11 @@ const server = new ApolloServer({
 })
 
 const port = process.env.PORT || 3000
-
-server.applyMiddleware({ app })
+const corsOptions = {
+    origin: '*',
+    credentials: true
+}
+server.applyMiddleware({ app , cors: corsOptions })
 console.log("NODE-ENV", process.env.NODE_ENV);
 app.listen({ port }, async () => {
     await mongoose.connect(config.get('mongodbURL'), { useNewUrlParser: true, useUnifiedTopology: true })
