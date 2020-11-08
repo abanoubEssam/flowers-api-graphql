@@ -7,7 +7,7 @@ export const createShopMutation = {
     createShop: async (parent, args, ctx, info) => {
         console.log("args", args)
         const user = ctx[0]
-        console.log("user", user._id)
+        // console.log("user", user._id)
         if (!user) {
             throw new Error("Login First")
         }
